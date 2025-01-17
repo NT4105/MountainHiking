@@ -22,7 +22,7 @@ public class Menu {
     public void UpdateMenu() {
         System.out.println("+---------------Update Menu----------------+");
         System.out.println("| Enter student ID to update information   |");
-        System.out.println("| Or enter 0 to return to main menu        |");
+        System.out.println("|                                          |");
         System.out.println("+------------------------------------------+");
     }
 

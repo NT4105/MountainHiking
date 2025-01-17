@@ -18,12 +18,18 @@ public class RegisterController extends BaseController {
     }
 
     public void displayRegisterMenu() {
-        while (true) {
-            menu.RegisterMenu();
-            if (registerStudent()) {
-                System.out.println("Student registered successfully!");
-                break;
+        try {
+            System.out.println("[1] New Registration");
+            System.out.println("[0] Back to Main Menu");
+            System.out.print("Enter your choice: ");
+            int choice = getValidChoice(0, 1);
+            if (choice == 1) {
+                registerStudent();
+            } else if (choice == 0) {
+                return;
             }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
@@ -37,6 +43,11 @@ public class RegisterController extends BaseController {
 
         Student student = new Student(id, name, phone, email, mountainCode, tuitionFee);
         students.put(id, student);
+        if (students.containsKey(id)) {
+            System.out.println("Student registered successfully!");
+        } else {
+            System.out.println("Student registration failed!");
+        }
         return true;
     }
 

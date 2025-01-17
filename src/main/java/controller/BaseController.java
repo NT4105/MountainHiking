@@ -18,7 +18,7 @@ public abstract class BaseController {
     protected int getValidChoice(int min, int max) {
         int choice;
         do {
-            System.out.print("Enter your choice: ");
+            System.out.print("Plase enter your choice: ");
             while (!scanner.hasNextInt()) {
                 System.out.println("That's not a valid number. Please try again.");
                 scanner.next();
