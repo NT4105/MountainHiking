@@ -13,24 +13,37 @@ public class UpdateController extends BaseController {
     }
 
     public void displayUpdateMenu() {
-        while (true) {
-            menu.UpdateMenu();
-            System.out.print("Enter student ID to update (or 0 to return): ");
-            String studentId = scanner.nextLine().toUpperCase();
-
-            if (studentId.equals("0")) {
-                break;
+        try {
+            System.out.println("[1] Update Registration Information");
+            System.out.println("[0] Back to Main Menu");
+            System.out.print("Enter your choice: ");
+            int choice = getValidChoice(0, 1);
+            if (choice == 1) {
+                updateStudentInfo();
+            } else if (choice == 0) {
+                return;
             }
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 
-            Student student = students.get(studentId);
+    private void updateStudentInfo() {
+        String id;
+        do {
+            System.out.print("Enter student ID to update: ");
+            id = scanner.nextLine().trim();
+        } while (!StudentValidator.isValidId(id, students));
+
+        if (!id.isEmpty() && StudentValidator.isValidId(id, students)) {
+            Student student = students.get(id);
             if (student == null) {
-                System.out.println("This student has not registered yet.");
-                continue;
+                System.out.println("This student has not registered yet!.");
+                return;
             }
 
             updateStudentInfo(student);
             System.out.println("Student information updated successfully!");
-            break;
         }
     }
 
