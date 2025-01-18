@@ -14,14 +14,19 @@ public class UpdateController extends BaseController {
 
     public void displayUpdateMenu() {
         try {
-            System.out.println("[1] Update Registration Information");
-            System.out.println("[0] Back to Main Menu");
-            System.out.print("Enter your choice: ");
-            int choice = getValidChoice(0, 1);
-            if (choice == 1) {
-                updateStudentInfo();
-            } else if (choice == 0) {
-                return;
+            while (true) {
+                System.out.println("[1] Update Registration Information");
+                System.out.println("[0] Back to Main Menu");
+                System.out.print("Enter your choice: ");
+                int choice = getValidChoice(0, 1);
+                if (choice == 1) {
+                    updateStudentInfo();
+                    if (confirmBackToMain()) {
+                        return;
+                    }
+                } else if (choice == 0) {
+                    return;
+                }
             }
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());

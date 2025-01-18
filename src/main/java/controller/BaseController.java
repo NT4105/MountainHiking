@@ -31,4 +31,17 @@ public abstract class BaseController {
         } while (choice < min || choice > max);
         return choice;
     }
+
+    protected boolean confirmBackToMain() {
+        while (true) {
+            System.out.print("Do you want to continue? (Y/N): ");
+            String choice = scanner.nextLine().trim().toUpperCase();
+            if (choice.equals("Y")) {
+                return false; // Don't go back to main menu
+            } else if (choice.equals("N")) {
+                return true; // Go back to main menu
+            }
+            System.out.println("Please enter Y or N!");
+        }
+    }
 }
