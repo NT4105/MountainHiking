@@ -23,10 +23,10 @@ public class MainMenuController extends BaseController {
                     new UpdateController(students).displayUpdateMenu();
                     break;
                 case 3:
-                    new DisplayInfoController().displayInfoMenu();
+                    new DisplayInfoController().displayInfo();
                     break;
                 case 4:
-                    new DeleteController().displayDeleteMeu();
+                    new DeleteInfoController().displayDeleteMenu();
                     break;
                 case 5:
                     new SearchMenuController().displaySearchMenu();
