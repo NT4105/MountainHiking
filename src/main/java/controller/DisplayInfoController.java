@@ -11,6 +11,11 @@ public class DisplayInfoController extends BaseController {
     }
 
     public void displayInfo() {
+        if (students.isEmpty()) {
+            System.out.println("No students have registered yet.");
+            return;
+        }
+        System.out.println("Registered Students:");
         display.displayRegisteredList(students);
     }
 }
