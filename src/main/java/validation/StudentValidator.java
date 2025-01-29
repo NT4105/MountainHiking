@@ -80,4 +80,22 @@ public class StudentValidator {
         return prefix.matches("^(086|096|097|098|032|033|034|035|036|037|038|039).*") || // Viettel
                 prefix.matches("^(088|091|094|083|084|085|081|082).*"); // VNPT
     }
+
+    public static boolean isValidCampusCode(String campusCode) {
+        if (campusCode.isEmpty()) {
+            System.out.println("Campus code cannot be empty!");
+            return false;
+        }
+        if (campusCode.length() != 2) {
+            System.out.println("Campus code must be 2 characters!");
+            return false;
+        }
+        String upperCampusCode = campusCode.toUpperCase();
+        if (!upperCampusCode.matches("^(CE|DE|HE|SE|QE)$")) {
+            System.out.println(
+                    "Invalid campus code! Must be one of: CE (Can Tho), DE (Da Nang), HE (Ha Noi), SE (Ho Chi Minh), QE (Quy Nhon)");
+            return false;
+        }
+        return true;
+    }
 }
