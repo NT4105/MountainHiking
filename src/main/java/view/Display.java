@@ -35,4 +35,35 @@ public class Display {
                 System.out.printf("| Fee       : %-,30.2f |%n", student.getTutionFee());
                 System.out.println("+------------------------------------------+");
         }
+
+        public void displayStatistics(HashMap<String, Student> students) {
+                System.out.println(
+                                "+-----------------+------------------------+----------------------+");
+                System.out.printf("| %-15s | %-22s | %-20s |%n",
+                                "Peak Name", "Number of Participants", "Total Cost");
+                System.out.println(
+                                "+-----------------+------------------------+----------------------+");
+
+                // Tạo map để lưu thống kê theo mountainCode
+                HashMap<String, Integer> participantCount = new HashMap<>();
+                HashMap<String, Double> totalCost = new HashMap<>();
+
+                // Tính toán thống kê
+                for (Student student : students.values()) {
+                        String mountainCode = student.getMountainCode();
+                        participantCount.merge(mountainCode, 1, Integer::sum);
+                        totalCost.merge(mountainCode, student.getTutionFee(), Double::sum);
+                }
+
+                // Hiển thị thống kê cho từng mountain code
+                for (String mountainCode : participantCount.keySet()) {
+                        System.out.printf("| %-15s | %-22d | %,20.2f |%n",
+                                        mountainCode,
+                                        participantCount.get(mountainCode),
+                                        totalCost.get(mountainCode));
+                }
+
+                System.out.println(
+                                "+-----------------+------------------------+----------------------+");
+        }
 }

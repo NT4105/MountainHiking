@@ -35,8 +35,10 @@ public class MainMenuController extends BaseController {
                     new FilterMenuController().displayFilterMenu();
                     break;
                 case 7:
+                    new StatisticsController().displayStatisticsMenu();
                     break;
                 case 8:
+                    new SaveDataController().displaySaveDataMenu();
                     break;
                 case 0:
                     System.out.println("Exiting the application.");
