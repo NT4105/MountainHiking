@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.util.HashMap;
 import models.Student;
 import view.Menu;
+import models.Mountain;
 
 public abstract class BaseController {
     protected Menu menu;
@@ -13,6 +14,7 @@ public abstract class BaseController {
     public BaseController() {
         this.menu = new Menu();
         this.scanner = new Scanner(System.in);
+        Mountain.loadMountainCodes();
     }
 
     protected int getValidChoice(int min, int max) {

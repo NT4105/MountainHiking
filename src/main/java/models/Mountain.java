@@ -1,10 +1,18 @@
 package models;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
+
 public class Mountain {
     private String mountainCode;
     private String mountain;
     private String province;
     private String description;
+
+    private static Set<String> validMountainCodes = new HashSet<>();
 
     public Mountain() {
     }
@@ -48,4 +56,24 @@ public class Mountain {
         this.description = description;
     }
 
+    // Load mountain codes from MountainList.csv
+    public static void loadMountainCodes() {
+        String line;
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/MountainList.csv"))) {
+            // Skip header line
+            br.readLine();
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                if (values.length > 0) {
+                    validMountainCodes.add(values[0].trim());
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading MountainList.csv: " + e.getMessage());
+        }
+    }
+
+    public static boolean isValidMountainCode(String mountainCode) {
+        return validMountainCodes.contains(mountainCode);
+    }
 }

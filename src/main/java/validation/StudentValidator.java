@@ -3,6 +3,7 @@ package validation;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 import models.Student;
+import models.Mountain;
 
 public class StudentValidator {
     private static final Pattern STUDENT_ID_PATTERN = Pattern.compile("^(SE|HE|DE|QE|CE)\\d{6}$");
@@ -71,7 +72,15 @@ public class StudentValidator {
     }
 
     public static boolean isValidMountainCode(String mountainCode) {
-        // TODO: Implement validation against MountainList.csv
+        if (mountainCode.isEmpty()) {
+            System.out.println("Mountain code cannot be empty!");
+            return false;
+        }
+
+        if (!Mountain.isValidMountainCode(mountainCode)) {
+            System.out.println("Invalid mountain code! Please enter a valid code from the mountain list.");
+            return false;
+        }
         return true;
     }
 
