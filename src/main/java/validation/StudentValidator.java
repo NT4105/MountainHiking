@@ -21,6 +21,19 @@ public class StudentValidator {
             System.out.println("Invalid ID format! Must start with SE, HE, DE, QE, or CE followed by 6 digits.");
             return false;
         }
+        return true;
+    }
+
+    public static boolean isValidNewId(String id, HashMap<String, Student> students) {
+        if (id.isEmpty()) {
+            System.out.println("Student ID cannot be empty!");
+            return false;
+        }
+
+        if (!STUDENT_ID_PATTERN.matcher(id).matches()) {
+            System.out.println("Invalid ID format! Must start with SE, HE, DE, QE, or CE followed by 6 digits.");
+            return false;
+        }
         if (students.containsKey(id)) {
             System.out.println("Student ID already exists!");
             return false;
@@ -77,11 +90,18 @@ public class StudentValidator {
             return false;
         }
 
-        if (!Mountain.isValidMountainCode(mountainCode)) {
-            System.out.println("Invalid mountain code! Please enter a valid code from the mountain list.");
+        try {
+            int number = Integer.parseInt(mountainCode.trim());
+            String formattedCode = String.format("MT%02d", number);
+            if (!Mountain.isValidMountainCode(formattedCode)) {
+                System.out.println("Invalid mountain code! Please enter a valid number from the mountain list.");
+                return false;
+            }
+            return true;
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter a valid number!");
             return false;
         }
-        return true;
     }
 
     public static boolean isViettelOrVNPT(String phone) {
