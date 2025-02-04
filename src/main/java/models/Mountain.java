@@ -65,7 +65,9 @@ public class Mountain {
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
                 if (values.length > 0) {
-                    validMountainCodes.add(values[0].trim());
+                    // Convert number to MT format
+                    String formattedCode = String.format("MT%02d", Integer.parseInt(values[0].trim()));
+                    validMountainCodes.add(formattedCode);
                 }
             }
         } catch (IOException e) {
@@ -75,5 +77,14 @@ public class Mountain {
 
     public static boolean isValidMountainCode(String mountainCode) {
         return validMountainCodes.contains(mountainCode);
+    }
+
+    public static String formatMountainCode(String mountainCode) {
+        try {
+            int number = Integer.parseInt(mountainCode.trim());
+            return String.format("MT%02d", number);
+        } catch (NumberFormatException e) {
+            return mountainCode;
+        }
     }
 }
