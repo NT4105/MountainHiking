@@ -17,7 +17,6 @@ public class UpdateController extends BaseController {
             while (true) {
                 System.out.println("[1] Update Registration Information");
                 System.out.println("[0] Back to Main Menu");
-                System.out.print("Enter your choice: ");
                 int choice = getValidChoice(0, 1);
                 if (choice == 1) {
                     updateStudentInfo();
@@ -58,6 +57,7 @@ public class UpdateController extends BaseController {
         String name = scanner.nextLine().trim();
         if (!name.isEmpty() && StudentValidator.isValidName(name)) {
             student.setName(name);
+            hasUnsavedChanges = true;
         }
 
         // Update phone
@@ -65,6 +65,7 @@ public class UpdateController extends BaseController {
         String phone = scanner.nextLine().trim();
         if (!phone.isEmpty() && StudentValidator.isValidPhone(phone)) {
             student.setPhone(phone);
+            hasUnsavedChanges = true;
         }
 
         // Update email
@@ -72,6 +73,7 @@ public class UpdateController extends BaseController {
         String email = scanner.nextLine().trim();
         if (!email.isEmpty() && StudentValidator.isValidEmail(email)) {
             student.setEmail(email);
+            hasUnsavedChanges = true;
         }
 
         // Update mountain code
@@ -80,6 +82,7 @@ public class UpdateController extends BaseController {
         String mountainCode = scanner.nextLine().trim();
         if (!mountainCode.isEmpty() && StudentValidator.isValidMountainCode(mountainCode)) {
             student.setMountainCode(mountainCode);
+            hasUnsavedChanges = true;
         }
     }
 }

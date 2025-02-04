@@ -16,7 +16,6 @@ public class FilterMenuController extends BaseController {
             while (true) {
                 System.out.println("[1] Filter Data by Campus");
                 System.out.println("[0] Back to Main Menu");
-                System.out.print("Enter your choice: ");
                 int choice = getValidChoice(0, 1);
                 if (choice == 1) {
                     filterByCampus();

@@ -13,7 +13,7 @@ public class MainMenuController extends BaseController {
     public void displayMainMenu() {
         while (true) {
             menu.MainMenu();
-            int choice = getValidChoice(0, 8);
+            int choice = getValidChoice(0, 9);
 
             switch (choice) {
                 case 1:
@@ -40,10 +40,18 @@ public class MainMenuController extends BaseController {
                 case 8:
                     new SaveDataController().displaySaveDataMenu();
                     break;
-                case 0:
-                    System.out.println("Exiting the application.");
-                    System.exit(0);
+                case 9:
+                    SaveDataController saveDataController = new SaveDataController();
+                    ExitController exitController = new ExitController(saveDataController);
+                    if (exitController.confirmExit()) {
+                        System.exit(0);
+                    }
                     break;
+                case 0:
+                    System.out.println("This function is not available.");
+                    break;
+                default:
+                    System.out.println("This function is not available.");
             }
         }
     }

@@ -11,7 +11,7 @@ public class DisplayInfoController extends BaseController {
     }
 
     public void displayInfo() {
-        if (students.isEmpty()) {
+        if (students == null || students.isEmpty()) {
             System.out.println("No students have registered yet.");
             return;
         }

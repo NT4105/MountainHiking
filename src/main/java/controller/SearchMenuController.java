@@ -17,7 +17,6 @@ public class SearchMenuController extends BaseController {
             while (true) {
                 System.out.println("[1] Search by Student Name");
                 System.out.println("[0] Back to Main Menu");
-                System.out.print("Enter your choice: ");
                 int choice = getValidChoice(0, 1);
                 if (choice == 1) {
                     searchStudentByName();

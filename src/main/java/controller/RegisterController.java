@@ -22,7 +22,6 @@ public class RegisterController extends BaseController {
             while (true) {
                 System.out.println("[1] New Registration");
                 System.out.println("[0] Back to Main Menu");
-                System.out.print("Enter your choice: ");
                 int choice = getValidChoice(0, 1);
                 if (choice == 1) {
                     registerStudent();
@@ -61,7 +60,7 @@ public class RegisterController extends BaseController {
         do {
             System.out.print("Enter Student ID (e.g., SE123456): ");
             id = scanner.nextLine().toUpperCase();
-        } while (!StudentValidator.isValidId(id, students));
+        } while (!StudentValidator.isValidNewId(id, students));
         return id;
     }
 
@@ -98,7 +97,7 @@ public class RegisterController extends BaseController {
             System.out.print("Enter mountain code: ");
             mountainCode = scanner.nextLine();
         } while (!StudentValidator.isValidMountainCode(mountainCode));
-        return mountainCode;
+        return Mountain.formatMountainCode(mountainCode);
     }
 
     private double calculateTuitionFee(String phone) {
