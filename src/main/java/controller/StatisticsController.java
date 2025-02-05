@@ -9,6 +9,7 @@ public class StatisticsController extends BaseController {
 
     public StatisticsController() {
         super();
+        this.display = new Display();
     }
 
     public void displayStatisticsMenu() {

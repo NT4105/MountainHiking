@@ -5,6 +5,10 @@ import java.util.HashMap;
 
 public class Display {
         public void displayRegisteredList(HashMap<String, Student> students) {
+                if (students == null || students.isEmpty()) {
+                        System.out.println("No registered students to display.");
+                        return;
+                }
                 System.out.println(
                                 "+------------+----------------------+---------------+--------------------------------+-----------+---------------+");
                 System.out.printf("| %-10s | %-20s | %-13s | %-30s | %-9s | %-13s |%n",

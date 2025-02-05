@@ -111,7 +111,7 @@ public class StudentValidator {
     }
 
     public static boolean isValidCampusCode(String campusCode) {
-        if (campusCode.isEmpty()) {
+        if (campusCode == null || campusCode.isEmpty()) {
             System.out.println("Campus code cannot be empty!");
             return false;
         }

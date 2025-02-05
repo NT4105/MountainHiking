@@ -3,12 +3,14 @@ package controller;
 import view.Display;
 import validation.StudentValidator;
 import models.Student;
+import java.util.HashMap;
 
 public class FilterMenuController extends BaseController {
     private Display display;
 
     public FilterMenuController() {
         super();
+        this.display = new Display();
     }
 
     public void displayFilterMenu() {
@@ -34,17 +36,24 @@ public class FilterMenuController extends BaseController {
     private void filterByCampus() {
         String campusCode;
         do {
-            System.out.println("Enter Campus Code to filter (e.g., CE, DE, HE, SE, QE): ");
-            campusCode = scanner.nextLine().trim();
+            System.out.print("Enter Campus Code to filter (e.g., CE, DE, HE, SE, QE): ");
+            campusCode = scanner.nextLine().trim().toUpperCase();
         } while (!StudentValidator.isValidCampusCode(campusCode));
 
-        if (students == null) {
+        HashMap<String, Student> filteredStudents = new HashMap<>();
+        for (Student student : students.values()) {
+            if (student.getId().startsWith(campusCode)) {
+                filteredStudents.put(student.getId(), student);
+            }
+        }
+
+        if (filteredStudents.isEmpty()) {
             System.out.println("No students have registered under this campus.");
             return;
         }
 
         System.out.println("Registered Students Under " + campusCode + " Campus (" + campusCode + ")");
-        display.displayRegisteredList(students);
+        display.displayRegisteredList(filteredStudents);
     }
 
 }
