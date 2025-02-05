@@ -49,6 +49,6 @@ public class StatisticsController extends BaseController {
         }
 
         System.out.println("Statistics of Registration by Mountain Peak:");
-        display.displayStatistics(students);
+        display.displayStatistics(participantCount, totalCost);
     }
 }

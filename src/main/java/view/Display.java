@@ -26,17 +26,17 @@ public class Display {
         }
 
         public void displayStudentInfo(Student student) {
-                System.out.println("+------------------------------------------+");
+                System.out.println("+--------------------------------------------+");
                 System.out.printf("| Student ID: %-30s |%n", student.getId());
                 System.out.printf("| Name      : %-30s |%n", student.getName());
                 System.out.printf("| Phone     : %-30s |%n", student.getPhone());
                 System.out.printf("| Email     : %-30s |%n", student.getEmail());
                 System.out.printf("| Peak Code : %-30s |%n", student.getMountainCode());
                 System.out.printf("| Fee       : %-,30.2f |%n", student.getTutionFee());
-                System.out.println("+------------------------------------------+");
+                System.out.println("+--------------------------------------------+");
         }
 
-        public void displayStatistics(HashMap<String, Student> students) {
+        public void displayStatistics(HashMap<String, Integer> participantCount, HashMap<String, Double> totalCost) {
                 System.out.println(
                                 "+-----------------+------------------------+----------------------+");
                 System.out.printf("| %-15s | %-22s | %-20s |%n",
@@ -44,18 +44,7 @@ public class Display {
                 System.out.println(
                                 "+-----------------+------------------------+----------------------+");
 
-                // Tạo map để lưu thống kê theo mountainCode
-                HashMap<String, Integer> participantCount = new HashMap<>();
-                HashMap<String, Double> totalCost = new HashMap<>();
-
-                // Tính toán thống kê
-                for (Student student : students.values()) {
-                        String mountainCode = student.getMountainCode();
-                        participantCount.merge(mountainCode, 1, Integer::sum);
-                        totalCost.merge(mountainCode, student.getTutionFee(), Double::sum);
-                }
-
-                // Hiển thị thống kê cho từng mountain code
+                // Hien thi thong ke cho tung mountain code
                 for (String mountainCode : participantCount.keySet()) {
                         System.out.printf("| %-15s | %-22d | %,20.2f |%n",
                                         mountainCode,

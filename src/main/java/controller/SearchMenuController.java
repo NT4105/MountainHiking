@@ -39,14 +39,18 @@ public class SearchMenuController extends BaseController {
             name = scanner.nextLine().trim();
         } while (!StudentValidator.isValidName(name));
 
-        Student student = students.get(name);
-        if (student == null) {
-            System.out.println("No one matches the search criteria.");
-            return;
+        boolean found = false;
+        for (Student student : students.values()) {
+            if (student.getName().equalsIgnoreCase(name)) {
+                System.out.println("Matching Student:");
+                display.displayStudentInfo(student);
+                found = true;
+                break;
+            }
         }
 
-        System.out.println("Matching Students:");
-        display.displayRegisteredList(students);
-
+        if (!found) {
+            System.out.println("No one matches the search criteria.");
+        }
     }
 }

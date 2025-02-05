@@ -20,6 +20,7 @@ public class RegisterController extends BaseController {
     public void displayRegisterMenu() {
         try {
             while (true) {
+                menu.RegisterMenu();
                 System.out.println("[1] New Registration");
                 System.out.println("[0] Back to Main Menu");
                 int choice = getValidChoice(0, 1);

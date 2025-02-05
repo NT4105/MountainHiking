@@ -15,6 +15,7 @@ public class UpdateController extends BaseController {
     public void displayUpdateMenu() {
         try {
             while (true) {
+                menu.UpdateMenu();
                 System.out.println("[1] Update Registration Information");
                 System.out.println("[0] Back to Main Menu");
                 int choice = getValidChoice(0, 1);
