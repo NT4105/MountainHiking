@@ -21,7 +21,7 @@ public abstract class BaseController {
     protected int getValidChoice(int min, int max) {
         int choice;
         do {
-            System.out.print("Plase enter your choice: ");
+            System.out.print("Please enter your choice: ");
             while (!scanner.hasNextInt()) {
                 System.out.println("That's not a valid number. Please try again.");
                 scanner.next();
@@ -40,9 +40,9 @@ public abstract class BaseController {
             System.out.print("Do you want to continue? (Y/N): ");
             String choice = scanner.nextLine().trim().toUpperCase();
             if (choice.equals("Y")) {
-                return false; // Don't go back to main menu
+                return false;
             } else if (choice.equals("N")) {
-                return true; // Go back to main menu
+                return true;
             }
             System.out.println("Please enter Y or N!");
         }
