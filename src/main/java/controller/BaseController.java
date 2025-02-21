@@ -9,12 +9,15 @@ import models.Mountain;
 public abstract class BaseController {
     protected Menu menu;
     protected Scanner scanner;
-    protected static HashMap<String, Student> students = new HashMap<>();
+    protected static HashMap<String, Student> students;
     protected static boolean hasUnsavedChanges = false;
 
     public BaseController() {
         this.menu = new Menu();
         this.scanner = new Scanner(System.in);
+        if (students == null) {
+            students = ReadDataController.readRegistrationData();
+        }
         Mountain.loadMountainCodes();
     }
 

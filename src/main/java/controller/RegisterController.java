@@ -4,6 +4,9 @@ import models.Student;
 import models.Mountain;
 import validation.StudentValidator;
 import java.util.HashMap;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class RegisterController extends BaseController {
     private final HashMap<String, Student> students;
@@ -48,6 +51,7 @@ public class RegisterController extends BaseController {
 
         Student student = new Student(id, name, phone, email, mountainCode, tuitionFee);
         students.put(id, student);
+        hasUnsavedChanges = true;
         if (students.containsKey(id)) {
             System.out.println("Student registered successfully!");
         } else {
@@ -93,9 +97,29 @@ public class RegisterController extends BaseController {
     }
 
     private String inputMountainCode() {
+        // Display mountain list first
+        System.out.println("\nAvailable Mountain Codes:");
+        System.out.println("------------------------");
+        // Read MountainList.csv before
+        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/MountainList.csv"))) {
+            // Skip header
+            br.readLine();
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",", 3); // Split only first 2 commas
+                if (values.length >= 2) {
+                    String code = values[0].trim();
+                    String mountain = values[1].trim();
+                    System.out.printf("MT%02d - %s%n", Integer.parseInt(code), mountain);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading mountain list: " + e.getMessage());
+        }
+        System.out.println("------------------------");
         String mountainCode;
         do {
-            System.out.print("Enter mountain code: ");
+            System.out.print("\nEnter mountain code (1-13): ");
             mountainCode = scanner.nextLine();
         } while (!StudentValidator.isValidMountainCode(mountainCode));
         return Mountain.formatMountainCode(mountainCode);

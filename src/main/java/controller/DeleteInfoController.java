@@ -33,10 +33,15 @@ public class DeleteInfoController extends BaseController {
     }
 
     private void deleteStudentInfo() {
+        if (students.isEmpty()) {
+            System.out.println("No registration data available.");
+            return;
+        }
+
         String id;
         do {
             System.out.print("Enter student ID to delete: ");
-            id = scanner.nextLine().trim();
+            id = scanner.nextLine().trim().toUpperCase();
         } while (!StudentValidator.isValidId(id, students));
 
         Student student = students.get(id);
@@ -54,6 +59,7 @@ public class DeleteInfoController extends BaseController {
 
         if (confirmation.equals("Y")) {
             students.remove(id);
+            hasUnsavedChanges = true; // Đánh dấu có thay đổi chưa lưu
             System.out.println("The registration has been successfully deleted.");
         } else {
             System.out.println("Deletion cancelled.");

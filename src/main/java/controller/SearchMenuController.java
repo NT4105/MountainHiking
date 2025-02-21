@@ -33,6 +33,11 @@ public class SearchMenuController extends BaseController {
     }
 
     private void searchStudentByName() {
+        if (students.isEmpty()) {
+            System.out.println("No registration data available.");
+            return;
+        }
+
         String name;
         do {
             System.out.print("Enter student name to search: ");
@@ -40,17 +45,18 @@ public class SearchMenuController extends BaseController {
         } while (!StudentValidator.isValidName(name));
 
         boolean found = false;
+        System.out.println("\nSearch Results:");
+        System.out.println("------------------------");
         for (Student student : students.values()) {
-            if (student.getName().equalsIgnoreCase(name)) {
-                System.out.println("Matching Student:");
+            if (student.getName().toLowerCase().contains(name.toLowerCase())) {
                 display.displayStudentInfo(student);
                 found = true;
-                break;
             }
         }
+        System.out.println("------------------------");
 
         if (!found) {
-            System.out.println("No one matches the search criteria.");
+            System.out.println("No students found matching the search criteria.");
         }
     }
 }

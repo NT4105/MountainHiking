@@ -11,11 +11,13 @@ public class DisplayInfoController extends BaseController {
     }
 
     public void displayInfo() {
-        if (students == null || students.isEmpty()) {
-            System.out.println("No students have registered yet.");
+        if (students.isEmpty()) {
+            System.out.println("No registration data available.");
             return;
         }
-        System.out.println("Registered Students:");
+        System.out.println("\nRegistered Students List:");
+        System.out.println("------------------------");
         display.displayRegisteredList(students);
+        System.out.println("------------------------");
     }
 }

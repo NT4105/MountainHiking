@@ -34,6 +34,11 @@ public class FilterMenuController extends BaseController {
     }
 
     private void filterByCampus() {
+        if (students.isEmpty()) {
+            System.out.println("No registration data available.");
+            return;
+        }
+
         String campusCode;
         do {
             System.out.print("Enter Campus Code to filter (e.g., CE, DE, HE, SE, QE): ");
@@ -54,6 +59,7 @@ public class FilterMenuController extends BaseController {
 
         System.out.println("Registered Students Under " + campusCode + " Campus (" + campusCode + ")");
         display.displayRegisteredList(filteredStudents);
+        System.out.println("------------------------");
     }
 
 }
