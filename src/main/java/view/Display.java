@@ -41,22 +41,16 @@ public class Display {
         }
 
         public void displayStatistics(HashMap<String, Integer> participantCount, HashMap<String, Double> totalCost) {
-                System.out.println(
-                                "+-----------------+------------------------+----------------------+");
-                System.out.printf("| %-15s | %-22s | %-20s |%n",
-                                "Peak Name", "Number of Participants", "Total Cost");
-                System.out.println(
-                                "+-----------------+------------------------+----------------------+");
+                System.out.println("--------------------------------------------------------------------");
+                System.out.printf("%-25s | %15s | %15s%n", "Mountain Name", "Participants", "Total Cost (VND)");
+                System.out.println("--------------------------------------------------------------------");
 
-                // Hien thi thong ke cho tung mountain code
-                for (String mountainCode : participantCount.keySet()) {
-                        System.out.printf("| %-15s | %-22d | %,20.2f |%n",
-                                        mountainCode,
-                                        participantCount.get(mountainCode),
-                                        totalCost.get(mountainCode));
+                for (String mountainName : participantCount.keySet()) {
+                        int count = participantCount.get(mountainName);
+                        double cost = totalCost.getOrDefault(mountainName, 0.0);
+                        System.out.printf("%-25s | %15d | %,15.0f%n",
+                                        mountainName, count, cost);
                 }
-
-                System.out.println(
-                                "+-----------------+------------------------+----------------------+");
+                System.out.println("--------------------------------------------------------------------");
         }
 }
