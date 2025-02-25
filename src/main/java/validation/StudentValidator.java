@@ -68,6 +68,10 @@ public class StudentValidator {
             System.out.println("Invalid phone number! Must be a valid Vietnamese phone number.");
             return false;
         }
+        
+        if (!isViettelOrVNPT(phone)) {
+            System.out.println("Invalid phone number! Must be a valid Vietnames phone number (Viettel or VNPT)");
+        }
         return true;
     }
 
